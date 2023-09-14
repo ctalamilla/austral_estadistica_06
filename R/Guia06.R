@@ -17,19 +17,40 @@ x = 1900
 
 alpha = 0.05
 
+s = S/sqrt(n) # desvio del estimador
 # resolucion
-s = S/sqrt(n)
+
 #1. Hipotesis
-#Ho: x <= Mu 
-#H1: x > Mu
+#Ho: x <= Mu # el estimador es igual o menor a Mu
+#H1: x > Mu # el estimador es mayor que Mu
 
 #2. Estadistico Z (conozco, Mu y S de la problacion)
-# Ze = (x - Mu) / s
+# Zempirico = (x - Mu) / s
 
-#3. Valor Critico, Zc para 1-alpha
+#3. Region Critica o zona de rechazo
+#Zc para 1-alpha
 
-Zc = qnorm(1-alpha) #entro con la probabildad a buscar el alpha.
-# 1.6448
-vc = Zc*S + Mu
-#1960.934
+zc = qnorm(1-alpha) #entro con la probabildad a buscar el alpha.
+# zc = 1.6448
+# Region de rechazo todos los Z mayores a 1.6448 (zc)
+
+
+# 4. Regla de decisión
+# Si Zempirico >= Zcritico => Rechazo H0
+# Si Zempirico >= 1.6448 => Rechazo H0
+# Si Zempirico < 1.6448 => No hay evidencia empirica para Rechazar H0.
+
+#5 Calcular Zempirico
+
+ze = (x-Mu)/s
+# ze = 6.89
+
+# 6 Aplico la Regla
+ze >= zc
+# True, Rechazo H0.
+
+# Accion derivada
+#Bajo la evidencia empirica se puede afirmar que X aumentó.
+
+
 
