@@ -195,6 +195,66 @@ ze<=zc
 
 
 
+# Ejercicio 7
+#El mes pasado, el rendimiento promedio de cierto activo fue de 9,8%. En 8 días tomados al azar del presente mes, tomados al azar, el rendimiento medio fue de 8,9% con un desvío de 1,93%. Admitiendo que estos rendimientos se distribuyen normalmente, se pide probar, con un nivel de significación de 5%, si puede afirmarse que el rendimiento promedio del presente mes, es inferior al del mes pasado.
+
+
+X = 9.8
+
+n = 8
+x = 8.9
+sd = 1.93
+alpha = 0.05
+
+# Ho X <= 9.8 # cola izquierda
+# H1 X > 9.8
+
+# Estadistico => t empirico # no hay datos de la poblacion
+
+# T critico
+tc = qt(alpha, df=n-1)
+# -1.89
+
+#Regla de decision
+#Si T-empirico <= Tc => RHo
+# Si T-empirico > TZ => NRHo
+
+# T empirico
+te = (x - X) / (sd/sqrt(n))
+# -1.3189
+
+# Aplicar regla
+te <= tc
+# Como Te <= Tc es Falso, NRHo
+
+
+# Ejercicio 8 
+
+#Las autoridades de una prestigiosa Universidad afirman que sus profesores cobran un sueldo promedio no inferior a $7200 anuales con un desvío de $2000. Para verificarlo se tomó una muestra al azar de 400 profesores de dicha Universidad, que arrojó un salario medio anual de $6900. Compruebe, si con una significación del 5%, puede validarse la afirmación de las autoridades de dicha Universidad.
+
+X = 7200
+sd = 2000
+
+n= 400
+x = 6900
+alpha = 0.05
+
+# Ho: X >= 7200 # una cola derecha
+# H1 < 7200
+
+# Estadistico Z empirico 
+
+# Zona Critica
+zc = qnorm(1-alpha)
+
+# Reglas
+# Si Zempirico >= Zcritico => RHo
+# Si Zempirico < Zcritico + NRHo
+
+# Zempirico
+
+ze = (x-X)/(sd/sqrt(n))
+
 
 
 
