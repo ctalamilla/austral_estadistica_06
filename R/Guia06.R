@@ -239,7 +239,7 @@ n= 400
 x = 6900
 alpha = 0.05
 
-# Ho: X >= 7200 # una cola derecha
+# Ho: X >= 7200 # una cola izquierda
 # H1 < 7200
 
 # Estadistico Z empirico 
@@ -254,6 +254,38 @@ zc = qnorm(1-alpha)
 # Zempirico
 
 ze = (x-X)/(sd/sqrt(n))
+# Aplicar regla
+ze <= zc
+# Como Te <= Tc es Verdadero, RHo
+
+
+
+# Ejercicio 10
+#Una importante Clínica asegura que por lo menos el 30% de sus pacientes, se rehabilitan totalmente. Se toma una muestra de 200 pacientes, y se encuentra que 52 de ellos están to-talmente rehabilitados. Verifique, con un nivel de significación del 5%, si puede considerarse que la afirmación de la Clínica es válida.
+P = 0.30
+n = 200
+p = 52/200 # p muestra 26%
+alpha = 0.05
+
+# Hipotesis
+#Ho: P >= 30 %
+#H1: P < 30 %
+
+#Estadistico Z (proporcion)
+
+# Z critico
+zc = qnorm(alpha)
+
+#Reglas
+# Si Zemp < Zcritico => RHo
+# Si Zemp > Zcritico => NRHo
+
+#Zempirico
+ze = (p-P) / sqrt(P*(1-P)/n)
+
+#Aplicar regla
+ze <= zc
+# ze > zc => NRHo
 
 
 
