@@ -69,8 +69,8 @@ grados_libertad = n-1
 alpha = 0.05
 
 # Hipostesis
-#Ho: x <= 15 dias # el estimador es igual o menor a 15
-#H1: x > 15 dias # el estimador es mayor 15
+#Ho: x >= 15 dias # el estimador es igual o menor a 15.
+#H1: x < 15 dias # el estimador es mayor 15.
 
 #2. Estadistico t (solo se tienen datos de la muestra)
 # t-empirico = (x - Mu) / s/Sqrt(n)
@@ -175,8 +175,8 @@ alpha = 0.05
 P = 0.1 # esto es lo que hay que poner a prueba
 
 #1. Hipotesis
-# Ho: P<= 0.1 #cola izquierda
-# H1: P> 0.1 
+# Ho: P >= 0.1 #cola izquierda
+# H1: P < 0.1 
 
 #2 Estadistico Z para proporcion
 
@@ -206,8 +206,8 @@ x = 8.9
 sd = 1.93
 alpha = 0.05
 
-# Ho X <= 9.8 # cola izquierda
-# H1 X > 9.8
+# Ho X >= 9.8 # cola izquierda
+# H1 X < 9.8
 
 # Estadistico => t empirico # no hay datos de la poblacion
 
@@ -286,6 +286,88 @@ ze = (p-P) / sqrt(P*(1-P)/n)
 #Aplicar regla
 ze <= zc
 # ze > zc => NRHo
+
+###Ejercicios de Prueba de Varianza
+
+#Ejercicio 3
+#Del padrón nacional de una importante obra social, se toman al azar, 9 pacientes que padecen una misma enfermedad, y se les indica que realicen una misma tarea, cuyo tiempo de realización tiene distribución normal. El tiempo promedio para la realización de la tarea fue de 17 minutos, con desvío de 2 minutos. Con un nivel de significación del 1%, ¿estos datos permiten afirmar que la varianza es menor a 5?
+
+n = 9 
+x = 17
+sd = 2 
+alpha = 0.01
+
+#Prueba de Varianza
+
+#Ho: Sigma >= 5
+#H1: Sigma < 5
+# Tamaño de la muestra
+n <- 9
+
+# Varianza muestral
+S2 <- 4
+
+# Varianza poblacional bajo la hipótesis nula
+sigma2 <- 5
+
+# Estadística de prueba chi-cuadrado
+X2 <- ((n - 1) * S2) / sigma2
+
+# Valor crítico para nivel de significación del 1% (cola izquierda)
+valor_critico <- qchisq(0.01, df = n - 1)
+
+# Cargar la librería ggplot2
+library(ggplot2)
+
+# Definir los grados de libertad y el valor crítico
+df <- 8
+valor_critico <- qchisq(0.01, df = df)
+
+# Crear un dataframe con los valores de la distribución chi-cuadrado
+df_chi <- data.frame(X2 = seq(0, 25, by = 0.1), Densidad = dchisq(seq(0, 25, by = 0.1), df = df))
+
+# Crear el gráfico
+ggplot(df_chi, aes(x = X2, y = Densidad)) +
+  geom_line(color = "blue", size = 1) +  # Línea de la distribución chi-cuadrado
+  geom_vline(xintercept = valor_critico, linetype = "dashed", color = "red", size = 1) +  # Línea del valor crítico
+  labs(title = "Distribución Chi-cuadrado",
+       x = "Valor de Chi-cuadrado",
+       y = "Densidad") +
+  theme_minimal()
+
+
+
+# Ejercicio 9
+
+#El desvío estándar del peso de ciertas computadoras es de 27 Kg. Se toman al azar 15 computadoras, las cuales arrojaron una desviación de 36 Kg. Compruebe si puede afirmarse que el incremento en la variabilidad es significativo, con alfa del 5%.
+
+#Prueba de Varianza
+
+#Ho: Varianza <= 27**2
+#H1: Varianza > 27**2 #esto es lo que hay que probar
+# Tamaño de la muestra
+
+alpha = 0.05
+
+n <- 15
+
+# Varianza muestral
+desvio_muestra <- 36
+
+# Varianza poblacional bajo la hipótesis nula
+desvio_pob <- 27  
+
+# Estadística de prueba chi-cuadrado
+X2 <- ((n - 1) * desvio_muestra**2) / (desvio_pob**2)
+
+# Valor crítico para nivel de significación del 1% (cola izquierda)
+valor_critico <- qchisq(1-alpha, df = n - 1)
+
+
+
+
+
+
 
 
 
